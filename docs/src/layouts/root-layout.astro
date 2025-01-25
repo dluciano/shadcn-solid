@@ -4,8 +4,7 @@ import Footer from "@/components/footer.astro";
 import Header from "@/components/header.astro";
 import ToastWrapper from "@/components/toast-wrapper";
 import { siteConfig } from "@/config/site";
-import "./main.css";
-import "./mdx.css";
+
 
 type Props = {
 	title?: string;
@@ -116,3 +115,8 @@ const { title, description, url } = Astro.props;
     </div>
   </body>
 </html>
+<style is:global>
+	@import "./theme.css";
+  @import "./main.css";
+  @import "./mdx.css";
+</style>

@@ -1,8 +1,8 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import solidJs from "@astrojs/solid-js";
-import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import rehypePrettyCode from "rehype-pretty-code";
 import { codeImport } from "remark-code-import";
@@ -11,6 +11,9 @@ import { siteConfig } from "./src/config/site";
 
 // https://astro.build/config
 export default defineConfig({
+	vite: {
+		plugins: [tailwindcss()],
+	},
 	site: siteConfig.url,
 	trailingSlash: "never",
 	markdown: {
@@ -114,9 +117,6 @@ export default defineConfig({
 
 	integrations: [
 		solidJs(),
-		tailwind({
-			applyBaseStyles: false,
-		}),
 		mdx(),
 		sitemap({
 			serialize(item) {
@@ -136,7 +136,7 @@ export default defineConfig({
 	output: "server",
 	adapter: vercel(),
 	experimental: {
-		contentLayer: true,
+		// contentLayer: true,
 		contentIntellisense: true,
 	},
 });
